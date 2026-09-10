@@ -39,14 +39,15 @@ const server = http.createServer(async (req, res) => {
         title: '🍕 New Order — Pizza This',
         color: 0xC8321A,
         fields: [
-          { name: '👤 Customer',   value: customerName, inline: true },
-          { name: '📦 Order Type', value: orderType,    inline: true },
-          ...(address ? [{ name: '📍 Address', value: address, inline: false }] : []),
-          ...(phone && phone.trim() ? [{ name: '📱 Phone', value: phone || 'Not provided', inline: true },
-          { name: '🛒 Items',      value: orderLines,   inline: false },
-          { name: '💰 Total',      value: totalLine,    inline: false },
-          ...(notes ? [{ name: '📝 Notes', value: notes, inline: false }] : []),
-        ],
+          fields: [
+  { name: '👤 Customer',   value: customerName, inline: true },
+  { name: '📦 Order Type', value: orderType,    inline: true },
+  ...(address ? [{ name: '📍 Address', value: address, inline: false }] : []),
+  ...[{ name: '📱 Phone', value: phone || 'Not provided', inline: true }],
+  { name: '🛒 Items',      value: orderLines,   inline: false },
+  { name: '💰 Total',      value: totalLine,    inline: false },
+  ...(notes ? [{ name: '📝 Notes', value: notes, inline: false }] : []),
+],
         footer: { text: `Placed at ${timestamp}` },
       };
 
