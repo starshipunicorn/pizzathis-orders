@@ -467,7 +467,7 @@ async function submitOrder(src) {
   const customerName = document.getElementById(`customer-name-${src}`).value.trim();
   const orderType    = document.getElementById(`order-type-${src}`).value;
   const address      = document.getElementById(`delivery-address-${src}`)?.value.trim() || '';
-  const phone        = document.getElementById(`phone-${src}`)?.value.trim() || '';
+  const phone        = document.getElementById(`phone-${src}`).value.trim();
   const notes        = document.getElementById(`special-requests-${src}`).value.trim();
   const status       = document.getElementById(`status-msg-${src}`);
   const btn          = document.getElementById(`submit-btn-${src}`);
