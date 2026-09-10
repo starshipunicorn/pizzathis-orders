@@ -20,7 +20,7 @@ const server = http.createServer(async (req, res) => {
     req.on('end', async () => {
       let order;
       try { order = JSON.parse(body); } catch { respond(res, 400, { error: 'Invalid JSON' }); return; }
-      const { customerName, orderType, address, notes, items } = order;
+      const { customerName, orderType, address, phone, notes, items } = order;
       if (!customerName || !items || items.length === 0) { respond(res, 400, { error: 'Missing required fields' }); return; }
 
       const isDelivery = orderType === 'Delivery';
@@ -39,13 +39,15 @@ const server = http.createServer(async (req, res) => {
         title: '🍕 New Order — Pizza This',
         color: 0x14532D,
         fields: [
-          { name: '👤 Customer',   value: customerName, inline: true },
-          { name: '📦 Order Type', value: orderType,    inline: true },
-          ...(address ? [{ name: '📍 Address', value: address, inline: false }] : []),
+          fields: [
+            { name: '👤 Customer',   value: customerName, inline: true },
+            { name: '📦 Order Type', value: orderType,    inline: true },
+            ...(address ? [{ name: '📍 Address', value: address, inline: false }] : []),
+            ...(phone ? [{ name: '📱 Phone', value: phone, inline: true }] : []),
           { name: '🛒 Items',      value: orderLines,   inline: false },
           { name: '💰 Total',      value: totalLine,    inline: false },
           ...(notes ? [{ name: '📝 Notes', value: notes, inline: false }] : []),
-        ],
+          ],
         footer: { text: `Placed at ${timestamp}` },
       };
 
