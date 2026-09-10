@@ -42,7 +42,7 @@ const server = http.createServer(async (req, res) => {
           { name: '👤 Customer',   value: customerName, inline: true },
           { name: '📦 Order Type', value: orderType,    inline: true },
           ...(address ? [{ name: '📍 Address', value: address, inline: false }] : []),
-          ...(phone && phone.trim() ? [{ name: '📱 Phone', value: phone, inline: true }] : []),
+          ...(phone && phone.trim() ? [{ name: '📱 Phone', value: phone || 'Not provided', inline: true },
           { name: '🛒 Items',      value: orderLines,   inline: false },
           { name: '💰 Total',      value: totalLine,    inline: false },
           ...(notes ? [{ name: '📝 Notes', value: notes, inline: false }] : []),
