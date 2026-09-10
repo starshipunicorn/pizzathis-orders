@@ -37,17 +37,16 @@ const server = http.createServer(async (req, res) => {
 
       const embed = {
         title: '🍕 New Order — Pizza This',
-        color: 0x14532D,
+        color: 0xC8321A,
         fields: [
-          fields: [
-            { name: '👤 Customer',   value: customerName, inline: true },
-            { name: '📦 Order Type', value: orderType,    inline: true },
-            ...(address ? [{ name: '📍 Address', value: address, inline: false }] : []),
-            ...(phone ? [{ name: '📱 Phone', value: phone, inline: true }] : []),
+          { name: '👤 Customer',   value: customerName, inline: true },
+          { name: '📦 Order Type', value: orderType,    inline: true },
+          ...(address ? [{ name: '📍 Address', value: address, inline: false }] : []),
+          ...(phone ? [{ name: '📱 Phone', value: phone, inline: true }] : []),
           { name: '🛒 Items',      value: orderLines,   inline: false },
           { name: '💰 Total',      value: totalLine,    inline: false },
           ...(notes ? [{ name: '📝 Notes', value: notes, inline: false }] : []),
-          ],
+        ],
         footer: { text: `Placed at ${timestamp}` },
       };
 
